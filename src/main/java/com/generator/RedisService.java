@@ -16,7 +16,7 @@ public class RedisService {
         this.redisTemplate = redisTemplate;
     }
 
-    public String insertUniqueValue() {
+    public synchronized String insertUniqueValue() {
         String newValue = UUID.randomUUID().toString();
         redisTemplate.opsForValue().setIfAbsent(SET_KEY, newValue);
         return newValue;
